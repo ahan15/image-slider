@@ -54,3 +54,17 @@ document.querySelector('.slider__btn--right').addEventListener('click', () => {
 document.querySelector('.slider__btn--left').addEventListener('click', () => {
   moveHandler();
 });
+
+slide.addEventListener('transitioned', () => {
+  const slidesArray = [...slide.querySelectorAll('img')];
+  root.style.setProperty('--slide-progress--transition', `${slideIndex === slidesArray.length - 1 ? 'none' : 'all 400ms cubic-bezier(0.82, 0.02, 0.39, 1.01)'}`);
+  if (slideIndex === 0) {
+    slide.style.transition = 'none';
+    slideIndex = slidesArray.length - 2;
+    moveSlides()
+  } else if (slideIndex === slidesArray.length - 1) {
+    slide.style.transition = 'none';
+    slideIndex = 1;
+    moveSlides()
+  }
+});
