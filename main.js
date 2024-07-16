@@ -3,6 +3,7 @@ import './style.css'
 const slide = document.querySelector('.slide');
 const root = document.querySelector(':root');
 let slideIndex = 1;
+let isMoving = false;
 
 function processImages(item) {
   return `<img src="${item.url}" alt="${item.alt}">`;
@@ -12,6 +13,7 @@ function moveSlides() {
   slide.style.transform = `translateX(-${slideIndex * 100}%)`;
   const slidesArray = [...slide.querySelectorAll('img')];
   root.style.setProperty('--slide-progress', `${(100 / (slidesArray.length - 3)) * (slideIndex - 1)}%`);
+  console.log(slideIndex);
 }
 
 // move when clicked
@@ -47,15 +49,21 @@ fetchImages();
 
 // click right btn
 document.querySelector('.slider__btn--right').addEventListener('click', () => {
+  if (isMoving) {
+    return;
+  }
   moveHandler('right');
 });
 
 // click left btn
 document.querySelector('.slider__btn--left').addEventListener('click', () => {
+  if (isMoving) {
+    return;
+  }
   moveHandler();
 });
 
-slide.addEventListener('transitioned', () => {
+slide.addEventListener('transitionend', () => {
   const slidesArray = [...slide.querySelectorAll('img')];
   root.style.setProperty('--slide-progress--transition', `${slideIndex === slidesArray.length - 1 ? 'none' : 'all 400ms cubic-bezier(0.82, 0.02, 0.39, 1.01)'}`);
   if (slideIndex === 0) {
