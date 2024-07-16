@@ -37,7 +37,7 @@ h1 {
   display: grid;
   place-items: center;
   max-width: 800px;
-  /* overflow: hidden; */
+  overflow: hidden; 
   box-shadow:
     20px 20px 50px hsla(210, 50%, 40%, .4),
     -20px -20px 50px hsla(210, 50%, 80%, .2)

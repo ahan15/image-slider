@@ -13,7 +13,6 @@ function moveSlides() {
   slide.style.transform = `translateX(-${slideIndex * 100}%)`;
   const slidesArray = [...slide.querySelectorAll('img')];
   root.style.setProperty('--slide-progress', `${(100 / (slidesArray.length - 3)) * (slideIndex - 1)}%`);
-  console.log(slideIndex);
 }
 
 // move when clicked
